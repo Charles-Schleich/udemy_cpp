@@ -33,12 +33,13 @@ Integer::~Integer(){
     delete m_pInt;
 };
 
+
+
 // METHODS
 
 int Integer::GetValue() const{
     return *m_pInt; // return value at address 
 };
-
 
 void Integer::SetValue(int value){
     // This check is for if the value has moved out of this object
@@ -49,3 +50,60 @@ void Integer::SetValue(int value){
 
     *m_pInt = value;
 }
+
+// Section 5 
+//  Operator Overloading 
+Integer Integer::operator+(const Integer & other) const {
+    Integer temp;
+    *temp.m_pInt = *m_pInt + *other.m_pInt;
+    return temp;
+}
+
+// Pre:increment
+// Returns an L value by reference, returns value at address this
+Integer & Integer::operator ++ () {
+     ++(*m_pInt ) ;
+    return *this;
+}
+
+// Post increment operator
+Integer Integer::operator ++ (int) {
+    Integer temp;
+    temp.SetValue(this->GetValue());
+    ++(*m_pInt );
+    return temp;
+}
+
+// Comparison operator
+bool Integer::operator == (const Integer & other) const {
+    return *m_pInt == *other.m_pInt;
+}
+
+
+Integer & Integer::operator = (const Integer & other) {
+    if (this !=&other){     // if object is being assigned to itself
+        delete m_pInt;      // Free memory of current object 
+        m_pInt = new int(*other.m_pInt);
+    }
+    return *this;
+}
+
+
+// Move operation
+Integer & Integer::operator = (Integer && other) {
+    if (this !=&other){     // if object is being assigned to itself
+        delete m_pInt;      // Free memory of current object 
+        m_pInt = other.m_pInt;
+        other.m_pInt = nullptr;
+    }
+    return *this;
+}
+
+// Function call operator 
+        // void operator() ();
+void Integer::operator () () {
+    std::cout << *m_pInt<<std::endl;
+}
+
+
+
