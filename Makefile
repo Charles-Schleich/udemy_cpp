@@ -9,6 +9,7 @@ INCLUDE  := -Iinclude/
 SRC      :=                      \
 	$(wildcard src/section4/*.cpp) \
 	$(wildcard src/section5/*.cpp) \
+	$(wildcard src/section6/*.cpp) \
 	$(wildcard src/*.cpp)         \
 
 
