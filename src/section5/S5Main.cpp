@@ -78,6 +78,7 @@ void operator_overloading(){
 }
 
 ///////////////////////////////////////////////////////////////////////
+
 // Smart Pointer From scratch for Integer Class
 class IntPtr{
         Integer *m_p;
@@ -110,7 +111,7 @@ void Process_shared(std::shared_ptr<Integer> ptr){
 }
 
 
-void CreateInteger(){
+void create_integer(){
     std::cout << "Smart Pointers" << std::endl;
     // Our smart pointer Implementation
     // IntPtr p = new Integer;
@@ -147,9 +148,76 @@ void CreateInteger(){
 // 7: overload with conventional behaviour to avoid confusion
 
 
+///////////////////////////////////////////////////////////////////////
+//// Type Converstion / Casting
+///////////////////////////////////////////////////////////////////////
+
+
+
+// Casting between Types
+void type_conversion(){
+    int a= 5, b=2;
+    float f = static_cast<float>(a)/b;
+    std::cout << f << std::endl;
+
+    char *p = reinterpret_cast<char*>(&a);
+    // If there are any qualifiers on the source then they are not destroyed
+    const int x = 13 ;
+    int *p2 = const_cast<int*>(&x);
+    // std::cout << &p << std::endl;
+    std::cout << *p2 << std::endl;
+};
+
+
+void print_Integer(Integer &a){
+
+    std::cout << a << std::endl;
+}
+
+// Casting between Types
+void type_conversion_adv(){
+    Integer a1{5}; // invokes parameterized constructor
+    Integer a2 = 5 ; // Compiler implicitly looks for for parameterized constructor which takes an int, then invokes it
+    int a = static_cast<int>(a1);
+    std::cout << a << std::endl;
+ 
+};
+
+
+
+class Product{
+    Integer m_Id;
+public:
+    // member initializer list 
+    Product(const Integer &id): m_Id(id){
+        std::cout << "Product(Const Integer)" << std::endl;
+        // m_Id = id;
+    }
+    ~Product() {
+        std::cout << "~Product(Const Integer)" << std::endl;
+    }
+};
+
+void initialization_vs_assignment(){
+    // initialization is results in less function calls than assignment 
+
+// init
+    // Integer a1{5};
+// assign
+    Integer a1;
+    a1 = 2;
+    std::cout << "=======\nProduct\n=======" << std::endl;
+    Product p(5);
+};
+
+
+
 
 // Main
 void section5(){
     // operator_overloading();
-    CreateInteger();
+    // create_integer();
+    // type_conversion();
+    // type_conversion_adv();
+    initialization_vs_assignment();
 }

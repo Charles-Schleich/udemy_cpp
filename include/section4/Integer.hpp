@@ -31,5 +31,9 @@ class Integer{
         // friend function - has access to all private+public methods and data of a class LAST RESORT 
         friend std::istream & operator >> (std::istream  &in, Integer &myint);
 
+        // Type Conversion Type to int
+        explicit operator int ();
+
+
 };
 

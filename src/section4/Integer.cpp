@@ -106,4 +106,11 @@ void Integer::operator () () {
 }
 
 
+// Type Conversion: Convert from Integer to Int
+Integer::operator int (){
+    return *m_pInt;
+};
+
+
+
 
